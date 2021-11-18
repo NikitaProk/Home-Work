@@ -116,7 +116,7 @@ public class HomeWork {
     }
     public static double task3(){
         Scanner scan = new Scanner(System.in);
-        System.out.println("\nTask 3 Input size of Array");
+        System.out.println("\nTask 3 Input size of Array: ");
         int sizeArr = scan.nextInt();
         int[] inputsArr = new int[sizeArr];
         String inputsArr1 = "";
