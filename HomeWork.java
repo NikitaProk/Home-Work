@@ -17,9 +17,8 @@ public class HomeWork {
         //start second task
         int size = 100;
         int[] arr_1 = new int[size];
-        int[] arr_2 = {};
         System.out.println(Arrays.toString(task2(arr_1)));
-        System.out.println(Arrays.toString(task2(arr_2,size)));
+        System.out.println(Arrays.toString(task2(size)));
         // end second task
 
         //start third task
@@ -37,6 +36,14 @@ public class HomeWork {
         System.out.format("\n" + formatTask3,"Expected number","Received number","Boolean result");
         System.out.format(formatTask3,String.valueOf(expectedAverage),String.valueOf(scanArray),String.valueOf(expectedAverage == scanArray));
         // end third task
+
+        //start fourth task
+        int[] arrTask4 = {48,98,20,85,378,902,76};
+        int[] bubbleSort = task4(arrTask4);
+        System.out.println(Arrays.toString(bubbleSort));
+        String quickSort = Arrays.toString(task4(arrTask4,0,arrTask4.length-1));
+        System.out.println(" Task 4 Quick sort\n" + quickSort);
+        //end fourth task
     }
 
     public static int task1(int input) {
@@ -48,8 +55,6 @@ public class HomeWork {
         }
         return sum1;
     }
-
-
 
     public static int[] task2(int[] arr_1) {
         System.out.println("\nSecond task:");
@@ -76,10 +81,10 @@ public class HomeWork {
             return true;
     }
 
-    public static int[] task2(int[] arr_2,int size) {
+    public static int[] task2(int size) {
         System.out.println("\nOverriding task2");
         int n = 0;
-        arr_2 = new int[size];
+        int[] arr_2 = new int[size];
         for (int i = 1; n < arr_2.length; i++) {
             if (check(i)) {
                 arr_2[n] = i;
@@ -136,6 +141,53 @@ public class HomeWork {
             meanArithmetic = sumArrTask3 / inputsArr.length;
         }
         return meanArithmetic;
+    }
+
+    public static int[] task4(int[] arrTask4) {
+        System.out.println("\n Task 4 bubble sort");
+        boolean isSorted = false;
+        int bub;
+        while(!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < arrTask4.length-1; i++) {
+                if(arrTask4[i] > arrTask4[i+1]){
+                    isSorted = false;
+                    bub = arrTask4[i];
+                    arrTask4[i] = arrTask4[i+1];
+                    arrTask4[i+1] = bub;
+                }
+            }
+        }
+        return arrTask4;
+    }
+
+    public static int[] task4(int[] arrTask4, int low, int high) {
+        if (low >= high) {
+            return arrTask4;
+        }
+        int stakEl = low + (high - low) / 2;
+        int i = low, j = high;
+        while (i < j) {
+            while ((i < stakEl) && (arrTask4[i] <= arrTask4[stakEl])) {
+                i++;
+            }
+            while ((j > stakEl) && (arrTask4[j] > arrTask4[stakEl])) {
+                j--;
+            }
+            if (i <= j) {
+                int temp = arrTask4[i];
+                arrTask4[i] = arrTask4[j];
+                arrTask4[j] = temp;
+                if (i == stakEl) {
+                    stakEl = j;
+                } else if (j == stakEl){
+                    stakEl = i;
+                }
+            }
+        }
+        task4(arrTask4, low, stakEl);
+        task4(arrTask4, stakEl + 1, high);
+        return arrTask4;
     }
 }
 
