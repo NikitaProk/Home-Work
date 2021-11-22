@@ -10,40 +10,64 @@ public class HomeWork {
         int expected = 23;
         String format = "|%1$15s|%2$15s|%3$15s|%4$15s|\n";
         int com = task1(input);
-        System.out.format(format,"Inputs number","Expected number","Received number","Boolean result");
-        System.out.format(format,input,expected,com,com == expected);
+        System.out.format(format, "Inputs number", "Expected number", "Received number", "Boolean result");
+        System.out.format(format, input , expected , com , com == expected);
         //end first task
 
         //start second task
         int size = 100;
-        int[] arr_1 = new int[size];
-        System.out.println(Arrays.toString(task2(arr_1)));
-        System.out.println(Arrays.toString(task2(size)));
+        int[] arrTask2 = new int[size];
+        String firstHundredSimp = Arrays.toString(task2(arrTask2));
+        System.out.println(firstHundredSimp);
+
+        int[] arrTask21 = {};
+        int newSize = 50;
+        String remakeArrSimp = Arrays.toString(task2(arrTask21,newSize));
+        System.out.println(remakeArrSimp);
         // end second task
 
         //start third task
-        int[] arrTask3 = {};
+        int[] arrTask3 = new int[]{1,2,3,4,5};
         double expectedAverage = 3;
         double meanArithmeticTask3 = task3(arrTask3);
+
+        String formatTask3 = "|%1$20s|%2$20s|%3$20s|\n";
+        System.out.format(formatTask3, "Expected number" , "Received number" , "Boolean result");
+        System.out.format(formatTask3, expectedAverage, meanArithmeticTask3 , expectedAverage == meanArithmeticTask3);
+
         double expectedGeo = 2.61;
-        String formatTask3 = "|%1$15s|%2$15s|%3$15s|\n";
-        System.out.format(formatTask3,"Expected number","Received number","Boolean result");
-        System.out.format(formatTask3,String.valueOf(expectedAverage),String.valueOf(meanArithmeticTask3),String.valueOf(expectedAverage == meanArithmeticTask3));
         double meanGeo = Math.round(task3geo(arrTask3) * 100.0) / 100.0;
-        System.out.format(formatTask3,"Expected number","Received number","Boolean result");
-        System.out.format(formatTask3,String.valueOf(expectedGeo),String.valueOf(meanGeo),String.valueOf(expectedGeo == meanGeo));
+        System.out.format(formatTask3, "Expected number", "Received number", "Boolean result");
+        System.out.format(formatTask3, expectedGeo, meanGeo, expectedGeo == meanGeo);
+
         double scanArray = Math.round(task3() * 100.0) / 100.0;
-        System.out.format("\n" + formatTask3,"Expected number","Received number","Boolean result");
-        System.out.format(formatTask3,String.valueOf(expectedAverage),String.valueOf(scanArray),String.valueOf(expectedAverage == scanArray));
+        System.out.format("\n" + formatTask3, "Expected number", "Received number", "Boolean result");
+        System.out.format(formatTask3, expectedAverage , scanArray , expectedAverage == scanArray);
         // end third task
 
         //start fourth task
         int[] arrTask4 = {48,98,20,85,378,902,76};
-        int[] bubbleSort = task4(arrTask4);
-        System.out.println(Arrays.toString(bubbleSort));
+        String bubbleSort = Arrays.toString(task4(arrTask4));
+        System.out.println(bubbleSort);
+
         String quickSort = Arrays.toString(task4(arrTask4,0,arrTask4.length-1));
         System.out.println(" Task 4 Quick sort\n" + quickSort);
+        //жаль что нельзя воспользоваться Arrays.sort(), где метод sort() в классе Arrays реализован алгоритмом быстрой сортировки ;)
         //end fourth task
+
+        // start fifth task
+        String stringTask5 = "Java , Java School allows you to try java programming language on practice. Java one of the most popular programming languages. I love Java!!!";
+        String substring1 = "Java";
+        int expectedIncludes = 5;
+        int includeStr = task5(stringTask5,substring1);
+        System.out.format(formatTask3, "Expected includes", "Received includes", "Boolean result");
+        System.out.format(formatTask3, expectedIncludes , includeStr , includeStr == expectedIncludes);
+
+        String indexOfStrArr = Arrays.toString(task5o(stringTask5,substring1));
+        System.out.println("Java , Java School allows you to try java programming language on practice. Java one of the most popular programming languages. I love Java!!!" + " = " + indexOfStrArr);
+
+        String inputsStrT2 = Arrays.toString(task5());
+        System.out.println(inputsStrT2);
     }
 
     public static int task1(int input) {
@@ -56,17 +80,16 @@ public class HomeWork {
         return sum1;
     }
 
-    public static int[] task2(int[] arr_1) {
+    public static int[] task2(int[] arrTask2) {
         System.out.println("\nSecond task:");
-
         int n = 0;
-        for (int i = 1; n < arr_1.length; i++) {
+        for (int i = 1; n < arrTask2.length; i++) {
             if (check(i)) {
-                arr_1[n] = i;
+                arrTask2[n] = i;
                 n++;
             }
         }
-        return arr_1;
+        return arrTask2;
     }
 
     static boolean check(int n) {
@@ -81,26 +104,19 @@ public class HomeWork {
             return true;
     }
 
-    public static int[] task2(int size) {
+    public static int[] task2(int[] arrTask21,int newSize) {
         System.out.println("\nOverriding task2");
-        int n = 0;
-        int[] arr_2 = new int[size];
-        for (int i = 1; n < arr_2.length; i++) {
-            if (check(i)) {
-                arr_2[n] = i;
-                n++;
-            }
-        }
-        return arr_2;
+        arrTask21 = new int[newSize];
+        return task2(arrTask21);
     }
+
     public static double task3(int[] arrTask3) {
         System.out.println("\nTak 3 Average");
-        arrTask3 = new int[]{1,2,3,4,5};
         double meanArithmetic = 0;
         if (arrTask3.length > 0) {
             double sumArrTask3 = 0;
-            for (int g = 0; g < arrTask3.length ; g++) {
-                sumArrTask3 = sumArrTask3 + arrTask3[g];
+            for (int i = 0; i < arrTask3.length; i++) {
+                sumArrTask3 = sumArrTask3 + arrTask3[i];
             }
             meanArithmetic = sumArrTask3  / arrTask3.length;
         }
@@ -109,38 +125,26 @@ public class HomeWork {
 
     public static double task3geo(int[] arrTask3) {
         System.out.println("\nTask 3 Geometric mean");
-        arrTask3 = new int[] {1,2,3,4,5};
+        if (arrTask3.length == 0){
+            return 0;
+        }
         double sum = 1.0;
-        if (arrTask3.length > 0) {
             for(int i = 0; i < arrTask3.length; i++){
                 sum = sum * arrTask3[i];
             }
-        }
-        double geoMean = Math.pow(sum,1.0/arrTask3.length);
-        return geoMean;
+        return Math.pow(sum, 1.0 / arrTask3.length);
     }
     public static double task3(){
         Scanner scan = new Scanner(System.in);
         System.out.println("\nTask 3 Input size of Array: ");
         int sizeArr = scan.nextInt();
         int[] inputsArr = new int[sizeArr];
-        String inputsArr1 = "";
-        double meanArithmetic = 0;
-        System.out.println("Input array elements: ");
-        for (int k = 0; k < sizeArr ; k++) {
-            inputsArr[k] = scan.nextInt();
-        }
-        inputsArr1 = Arrays.toString(inputsArr);
-        System.out.print(inputsArr1);
 
-        if (inputsArr.length > 0) {
-            double sumArrTask3 = 0;
-            for (int g = 0; g < inputsArr.length; g++) {
-                sumArrTask3 = sumArrTask3 + inputsArr[g];
-            }
-            meanArithmetic = sumArrTask3 / inputsArr.length;
+        System.out.println("Input array elements: ");
+        for (int i = 0; i < sizeArr ; i++) {
+            inputsArr[i] = scan.nextInt();
         }
-        return meanArithmetic;
+        return task3(inputsArr);
     }
 
     public static int[] task4(int[] arrTask4) {
@@ -188,6 +192,39 @@ public class HomeWork {
         task4(arrTask4, low, stakEl);
         task4(arrTask4, stakEl + 1, high);
         return arrTask4;
+    }
+    public static int task5(String stringTask5,String substring1) {
+        System.out.println("\nTask 5");
+        String strnew = stringTask5.toLowerCase();
+        String strnew2 = substring1.toLowerCase();
+        return (strnew.length() - strnew.replace(strnew2, "").length()) / strnew2.length();
+    }
+    public static int[] task5o(String stringTask5,String substring1) {
+        System.out.println("\nTask 5_1");
+        String strnew = stringTask5.toLowerCase();
+        String strnew2 = substring1.toLowerCase();
+
+        int[] res = new int[strnew.length()];
+        int count = 0;
+        int base = 0;
+        while(strnew.contains(strnew2)) {
+            int index = strnew.indexOf(strnew2);
+            res[count] = index + base;
+            base += index + strnew2.length();
+            strnew = strnew.substring(strnew.indexOf(strnew2) + strnew2.length());
+            count++;
+        }
+        return Arrays.copyOf(res, count);
+    }
+
+    public static int[] task5() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\nTask 5 optional! Input string: ");
+        String fullString = sc.nextLine();
+        System.out.println("Input substring: ");
+        String sub = sc.nextLine();
+
+        return task5o(fullString,sub);
     }
 }
 
