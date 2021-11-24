@@ -68,6 +68,12 @@ public class HomeWork {
 
         String inputsStrT2 = Arrays.toString(task5());
         System.out.println(inputsStrT2);
+        //end fifth task
+
+        //start optional task
+        int[] temp = new int[30];
+        System.out.println(Arrays.toString(optionalTask1(temp)));
+        System.out.println(Arrays.toString(optionalTask2(temp)));
     }
 
     public static int task1(int input) {
@@ -225,6 +231,58 @@ public class HomeWork {
         String sub = sc.nextLine();
 
         return task5o(fullString,sub);
+    }
+
+    public static int[] optionalTask1(int[] temp) {
+        System.out.println("\nOptional task 1");
+        int j = 1;
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = ((int)(Math.random()*101) - (int)(Math.random()*101));
+            System.out.println("День " + j + " "  + temp[i] + " градусов");
+            j++;
+        }
+        return temp;
+    }
+
+enum Weather {
+    FREEZY("Шуба","Валенки"),
+    COLD("Куртка", "Ботинки"),
+    WORM("Свитер","Туфли"),
+    HOT("Футболка", "Шлепанци");
+        Weather() {
+        }
+        private String clothesUp;
+        private String clothesDown;
+        Weather(String clothesUp, String clothesDown) {
+            this.clothesUp = clothesUp;
+            this.clothesDown = clothesDown;
+
+        }
+        public String[] getClothing(String clothesUp, String clothesDown) {
+            return new String[]{clothesUp,clothesDown};
+        }
+}
+    public static String[] optionalTask2(int[] temp) {
+        System.out.println("\nOptional task 2");
+        Weather weather = Weather.COLD;
+        Weather weather1 = Weather.HOT;
+        Weather weather2 = Weather.WORM;
+        Weather weather3 = Weather.FREEZY;
+        int j = 1;
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = ((int)(Math.random()*101) - (int)(Math.random()*101));
+            if (temp[i] > 0 && temp[i] <= 15) {
+                System.out.println("День " + j + " "  + temp[i] + " градусов" + " " + Arrays.toString(weather.getClothing(weather.clothesUp, weather.clothesDown)));
+            } else if (temp[i] < 0){
+                System.out.println("День " + j + " "  + temp[i] + " градусов" + " " + Arrays.toString(weather3.getClothing(weather3.clothesUp, weather3.clothesDown)));
+            } else if (temp[i] > 15 && temp[i] <= 25) {
+                System.out.println("День " + j + " "  + temp[i] + " градусов" + " " + Arrays.toString(weather2.getClothing(weather2.clothesUp, weather2.clothesDown)));
+            } else {
+                System.out.println("День " + j + " "  + temp[i] + " градусов" + " " + Arrays.toString(weather1.getClothing(weather1.clothesUp, weather1.clothesDown)));
+            }
+            j++;
+        }
+        return Arrays.toString(temp).split(" ");
     }
 }
 
