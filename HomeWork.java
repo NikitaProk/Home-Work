@@ -17,13 +17,10 @@ public class HomeWork {
         //start second task
         int size = 100;
         int[] arrTask2 = new int[size];
-        String firstHundredSimp = Arrays.toString(task2(arrTask2));
-        System.out.println(firstHundredSimp);
+        System.out.println(Arrays.toString(task2(arrTask2)));
 
-        int[] arrTask21 = {};
         int newSize = 50;
-        String remakeArrSimp = Arrays.toString(task2(arrTask21,newSize));
-        System.out.println(remakeArrSimp);
+        System.out.println(Arrays.toString(task2(newSize)));
         // end second task
 
         //start third task
@@ -47,33 +44,31 @@ public class HomeWork {
 
         //start fourth task
         int[] arrTask4 = {48,98,20,85,378,902,76};
-        String bubbleSort = Arrays.toString(task4(arrTask4));
-        System.out.println(bubbleSort);
+        System.out.println(Arrays.toString(task4(arrTask4)));
 
-        String quickSort = Arrays.toString(task4(arrTask4,0,arrTask4.length-1));
-        System.out.println(" Task 4 Quick sort\n" + quickSort);
-        //жаль что нельзя воспользоваться Arrays.sort(), где метод sort() в классе Arrays реализован алгоритмом быстрой сортировки ;)
+        System.out.println("\nTask 4 Quick sort\n" + Arrays.toString(task4(arrTask4,0,arrTask4.length-1)));
         //end fourth task
 
         // start fifth task
-        String stringTask5 = "Java , Java School allows you to try java programming language on practice. Java one of the most popular programming languages. I love Java!!!";
+        String stringTask5 = "Java School allows you to try java programming language on practice. Java one of the most popular programming languages. I love Java!!!";
         String substring1 = "Java";
-        int expectedIncludes = 5;
+        int expectedIncludes = 4;
         int includeStr = task5(stringTask5,substring1);
         System.out.format(formatTask3, "Expected includes", "Received includes", "Boolean result");
         System.out.format(formatTask3, expectedIncludes , includeStr , includeStr == expectedIncludes);
 
-        String indexOfStrArr = Arrays.toString(task5o(stringTask5,substring1));
-        System.out.println("Java , Java School allows you to try java programming language on practice. Java one of the most popular programming languages. I love Java!!!" + " = " + indexOfStrArr);
+        String indexOfStrArr = Arrays.toString(task5IndexArr(stringTask5,substring1));
+        System.out.println("Java School allows you to try java programming language on practice. Java one of the most popular programming languages. I love Java!!!" + " = " + indexOfStrArr);
 
         String inputsStrT2 = Arrays.toString(task5());
         System.out.println(inputsStrT2);
         //end fifth task
 
         //start optional task
-        int[] temp = new int[30];
+        int[] temp = new int[29];
         System.out.println(Arrays.toString(optionalTask1(temp)));
-        System.out.println(Arrays.toString(optionalTask2(temp)));
+        System.out.println(Arrays.toString(optionalTask2()));
+        // end optional task
     }
 
     public static int task1(int input) {
@@ -110,9 +105,9 @@ public class HomeWork {
             return true;
     }
 
-    public static int[] task2(int[] arrTask21,int newSize) {
+    public static int[] task2(int newSize) {
         System.out.println("\nOverriding task2");
-        arrTask21 = new int[newSize];
+        int[] arrTask21 = new int[newSize];
         return task2(arrTask21);
     }
 
@@ -201,26 +196,38 @@ public class HomeWork {
     }
     public static int task5(String stringTask5,String substring1) {
         System.out.println("\nTask 5");
-        String strnew = stringTask5.toLowerCase();
-        String strnew2 = substring1.toLowerCase();
-        return (strnew.length() - strnew.replace(strnew2, "").length()) / strnew2.length();
-    }
-    public static int[] task5o(String stringTask5,String substring1) {
-        System.out.println("\nTask 5_1");
-        String strnew = stringTask5.toLowerCase();
-        String strnew2 = substring1.toLowerCase();
+        String strFullString = stringTask5.toLowerCase();
+        String strSubString = substring1.toLowerCase();
+        int counter = 0;
+        int indexCount = 0;
+        while (indexCount != -1) {
 
-        int[] res = new int[strnew.length()];
+            indexCount = strFullString.indexOf(strSubString, indexCount);
+
+            if (indexCount != -1) {
+                counter++;
+                indexCount += strSubString.length();
+            }
+        }
+        return counter;
+    }
+    public static int[] task5IndexArr(String stringTask5,String substring1) {
+        System.out.println("\nTask 5_1");
+        String strFullString = stringTask5.toLowerCase();
+        String strSubString = substring1.toLowerCase();
+
+        int[] res = new int[strFullString.length()];
         int count = 0;
         int base = 0;
-        while(strnew.contains(strnew2)) {
-            int index = strnew.indexOf(strnew2);
+        int index = 0;
+        while(index > -1) {
+            index = strFullString.indexOf(strSubString);
             res[count] = index + base;
-            base += index + strnew2.length();
-            strnew = strnew.substring(strnew.indexOf(strnew2) + strnew2.length());
+            base += index + strSubString.length();
+            strFullString = strFullString.substring(strFullString.indexOf(strSubString) + strSubString.length());
             count++;
         }
-        return Arrays.copyOf(res, count);
+        return Arrays.copyOf(res, count -1);
     }
 
     public static int[] task5() {
@@ -230,16 +237,15 @@ public class HomeWork {
         System.out.println("Input substring: ");
         String sub = sc.nextLine();
 
-        return task5o(fullString,sub);
+        return task5IndexArr(fullString,sub);
     }
 
     public static int[] optionalTask1(int[] temp) {
         System.out.println("\nOptional task 1");
-        int j = 1;
-        for (int i = 0; i < temp.length; i++) {
+        for(int i = 0; i < temp.length; i++) {
             temp[i] = ((int)(Math.random()*101) - (int)(Math.random()*101));
-            System.out.println("День " + j + " "  + temp[i] + " градусов");
-            j++;
+            System.out.println("День " + (i + 1) + " "  + temp[i] + " градусов");
+            i++;
         }
         return temp;
     }
@@ -256,32 +262,34 @@ enum Weather {
         Weather(String clothesUp, String clothesDown) {
             this.clothesUp = clothesUp;
             this.clothesDown = clothesDown;
-
-        }
-        public String[] getClothing(String clothesUp, String clothesDown) {
-            return new String[]{clothesUp,clothesDown};
         }
 }
-    public static String[] optionalTask2(int[] temp) {
+
+    public String[] getClothing(String clothesUp, String clothesDown) {
+        return new String[]{clothesUp,clothesDown};
+    }
+
+    public static String[] optionalTask2() {
         System.out.println("\nOptional task 2");
         Weather weather = Weather.COLD;
         Weather weather1 = Weather.HOT;
         Weather weather2 = Weather.WORM;
         Weather weather3 = Weather.FREEZY;
-        int j = 1;
+        int[] temp = new int[29];
         for (int i = 0; i < temp.length; i++) {
             temp[i] = ((int)(Math.random()*101) - (int)(Math.random()*101));
             if (temp[i] > 0 && temp[i] <= 15) {
-                System.out.println("День " + j + " "  + temp[i] + " градусов" + " " + Arrays.toString(weather.getClothing(weather.clothesUp, weather.clothesDown)));
+                System.out.println("День "+ (i + 1) + " " + temp[i] +" " + weather.clothesUp + "," + weather.clothesDown);
             } else if (temp[i] < 0){
-                System.out.println("День " + j + " "  + temp[i] + " градусов" + " " + Arrays.toString(weather3.getClothing(weather3.clothesUp, weather3.clothesDown)));
+                System.out.println("День "+ (i + 1) + " " + temp[i] + " " + weather3.clothesUp + "," + weather3.clothesDown);
             } else if (temp[i] > 15 && temp[i] <= 25) {
-                System.out.println("День " + j + " "  + temp[i] + " градусов" + " " + Arrays.toString(weather2.getClothing(weather2.clothesUp, weather2.clothesDown)));
+                System.out.println("День "+ (i + 1) + " " + temp[i] + " " + weather2.clothesUp + "," + weather2.clothesDown);
             } else {
-                System.out.println("День " + j + " "  + temp[i] + " градусов" + " " + Arrays.toString(weather1.getClothing(weather1.clothesUp, weather1.clothesDown)));
+                System.out.println("День "+ (i + 1) + " " + temp[i] + " " + weather1.clothesUp + "," + weather1.clothesDown);
             }
-            j++;
+
         }
+
         return Arrays.toString(temp).split(" ");
     }
 }
