@@ -11,7 +11,7 @@ public class HomeWork {
         String format = "|%1$15s|%2$15s|%3$15s|%4$15s|\n";
         int com = task1(input);
         System.out.format(format, "Inputs number", "Expected number", "Received number", "Boolean result");
-        System.out.format(format, input , expected , com , com == expected);
+        System.out.format(format, input, expected, com, com == expected);
         //end first task
 
         //start second task
@@ -24,41 +24,41 @@ public class HomeWork {
         // end second task
 
         //start third task
-        int[] arrTask3 = new int[]{1,2,3,4,5};
+        int[] arrTask3 = new int[]{1, 2, 3, 4, 5};
         double expectedAverage = 3;
         double meanArithmeticTask3 = task3(arrTask3);
 
-        String formatTask3 = "|%1$20s|%2$20s|%3$20s|\n";
-        System.out.format(formatTask3, "Expected number" , "Received number" , "Boolean result");
-        System.out.format(formatTask3, expectedAverage, meanArithmeticTask3 , expectedAverage == meanArithmeticTask3);
+        String formatTask3Colomn = "|%1$20s|%2$20s|%3$20s|\n";
+        System.out.format(formatTask3Colomn, "Expected number", "Received number", "Boolean result");
+        System.out.format(formatTask3Colomn, expectedAverage, meanArithmeticTask3, expectedAverage == meanArithmeticTask3);
 
         double expectedGeo = 2.61;
         double meanGeo = Math.round(task3geo(arrTask3) * 100.0) / 100.0;
-        System.out.format(formatTask3, "Expected number", "Received number", "Boolean result");
-        System.out.format(formatTask3, expectedGeo, meanGeo, expectedGeo == meanGeo);
+        System.out.format(formatTask3Colomn, "Expected number", "Received number", "Boolean result");
+        System.out.format(formatTask3Colomn, expectedGeo, meanGeo, expectedGeo == meanGeo);
 
         double scanArray = Math.round(task3() * 100.0) / 100.0;
-        System.out.format("\n" + formatTask3, "Expected number", "Received number", "Boolean result");
-        System.out.format(formatTask3, expectedAverage , scanArray , expectedAverage == scanArray);
+        System.out.format("\n" + formatTask3Colomn, "Expected number", "Received number", "Boolean result");
+        System.out.format(formatTask3Colomn, expectedAverage, scanArray, expectedAverage == scanArray);
         // end third task
 
         //start fourth task
-        int[] arrTask4 = {48,98,20,85,378,902,76};
+        int[] arrTask4 = {48, 98, 20, 85, 378, 902, 76};
         System.out.println(Arrays.toString(task4(arrTask4)));
 
-        System.out.println("\nTask 4 Quick sort\n" + Arrays.toString(task4(arrTask4,0,arrTask4.length-1)));
+        System.out.println("\nTask 4 Quick sort\n" + Arrays.toString(task4(arrTask4, 0, arrTask4.length - 1)));
         //end fourth task
 
         // start fifth task
         String stringTask5 = "Java School allows you to try java programming language on practice. Java one of the most popular programming languages. I love Java!!!";
-        String substring1 = "Java";
+        String substringTask5 = "Java";
         int expectedIncludes = 4;
-        int includeStr = task5(stringTask5,substring1);
-        System.out.format(formatTask3, "Expected includes", "Received includes", "Boolean result");
-        System.out.format(formatTask3, expectedIncludes , includeStr , includeStr == expectedIncludes);
+        int includeStr = task5(stringTask5, substringTask5);
+        System.out.format(formatTask3Colomn, "Expected includes", "Received includes", "Boolean result");
+        System.out.format(formatTask3Colomn, expectedIncludes, includeStr, includeStr == expectedIncludes);
 
-        String indexOfStrArr = Arrays.toString(task5IndexArr(stringTask5,substring1));
-        System.out.println("Java School allows you to try java programming language on practice. Java one of the most popular programming languages. I love Java!!!" + " = " + indexOfStrArr);
+        int[] indexOfStrArr = task5IndexArr(stringTask5, substringTask5);
+        System.out.print("Java School allows you to try java programming language on practice. Java one of the most popular programming languages. I love Java!!!" + " = " + Arrays.toString(indexOfStrArr));
 
         String inputsStrT2 = Arrays.toString(task5());
         System.out.println(inputsStrT2);
@@ -74,9 +74,9 @@ public class HomeWork {
     public static int task1(int input) {
         int[] symbols = new int[input];
         int sum1 = 0;
-        for (int i = 0; i < symbols.length ; i++) {
-            sum1 = sum1 + (input%10);
-            input/=10;
+        for (int i = 0; i < symbols.length; i++) {
+            sum1 = sum1 + (input % 10);
+            input /= 10;
         }
         return sum1;
     }
@@ -94,15 +94,15 @@ public class HomeWork {
     }
 
     static boolean check(int n) {
-        if(n==1 || n<=0) {
+        if (n == 1 || n <= 0) {
             return false;
         }
-        for (int i = 2; i <= Math.sqrt(n);i++) {
+        for (int i = 2; i <= Math.sqrt(n); i++) {
             if (n % i == 0) {
                 return false;
             }
         }
-            return true;
+        return true;
     }
 
     public static int[] task2(int newSize) {
@@ -119,30 +119,31 @@ public class HomeWork {
             for (int i = 0; i < arrTask3.length; i++) {
                 sumArrTask3 = sumArrTask3 + arrTask3[i];
             }
-            meanArithmetic = sumArrTask3  / arrTask3.length;
+            meanArithmetic = sumArrTask3 / arrTask3.length;
         }
         return meanArithmetic;
     }
 
     public static double task3geo(int[] arrTask3) {
         System.out.println("\nTask 3 Geometric mean");
-        if (arrTask3.length == 0){
+        if (arrTask3.length == 0) {
             return 0;
         }
         double sum = 1.0;
-            for(int i = 0; i < arrTask3.length; i++){
-                sum = sum * arrTask3[i];
-            }
+        for (int i = 0; i < arrTask3.length; i++) {
+            sum = sum * arrTask3[i];
+        }
         return Math.pow(sum, 1.0 / arrTask3.length);
     }
-    public static double task3(){
+
+    public static double task3() {
         Scanner scan = new Scanner(System.in);
         System.out.println("\nTask 3 Input size of Array: ");
         int sizeArr = scan.nextInt();
         int[] inputsArr = new int[sizeArr];
 
         System.out.println("Input array elements: ");
-        for (int i = 0; i < sizeArr ; i++) {
+        for (int i = 0; i < sizeArr; i++) {
             inputsArr[i] = scan.nextInt();
         }
         return task3(inputsArr);
@@ -152,14 +153,14 @@ public class HomeWork {
         System.out.println("\n Task 4 bubble sort");
         boolean isSorted = false;
         int bub;
-        while(!isSorted) {
+        while (!isSorted) {
             isSorted = true;
-            for (int i = 0; i < arrTask4.length-1; i++) {
-                if(arrTask4[i] > arrTask4[i+1]){
+            for (int i = 0; i < arrTask4.length - 1; i++) {
+                if (arrTask4[i] > arrTask4[i + 1]) {
                     isSorted = false;
                     bub = arrTask4[i];
-                    arrTask4[i] = arrTask4[i+1];
-                    arrTask4[i+1] = bub;
+                    arrTask4[i] = arrTask4[i + 1];
+                    arrTask4[i + 1] = bub;
                 }
             }
         }
@@ -185,7 +186,7 @@ public class HomeWork {
                 arrTask4[j] = temp;
                 if (i == stakEl) {
                     stakEl = j;
-                } else if (j == stakEl){
+                } else if (j == stakEl) {
                     stakEl = i;
                 }
             }
@@ -194,40 +195,33 @@ public class HomeWork {
         task4(arrTask4, stakEl + 1, high);
         return arrTask4;
     }
-    public static int task5(String stringTask5,String substring1) {
+
+    public static int task5(String stringTask5, String substring1) {
         System.out.println("\nTask 5");
         String strFullString = stringTask5.toLowerCase();
         String strSubString = substring1.toLowerCase();
         int counter = 0;
-        int indexCount = 0;
-        while (indexCount != -1) {
-
-            indexCount = strFullString.indexOf(strSubString, indexCount);
-
-            if (indexCount != -1) {
-                counter++;
-                indexCount += strSubString.length();
-            }
+        int indexPrevious = 0;
+        while ((indexPrevious = strFullString.indexOf(strSubString, indexPrevious)) != -1) {
+            counter++;
+            indexPrevious += strSubString.length();
         }
         return counter;
     }
-    public static int[] task5IndexArr(String stringTask5,String substring1) {
+
+    public static int[] task5IndexArr(String stringTask5, String substring1) {
         System.out.println("\nTask 5_1");
         String strFullString = stringTask5.toLowerCase();
         String strSubString = substring1.toLowerCase();
-
-        int[] res = new int[strFullString.length()];
         int count = 0;
-        int base = 0;
+        int[] res = new int[strFullString.length()];
         int index = 0;
-        while(index > -1) {
-            index = strFullString.indexOf(strSubString);
-            res[count] = index + base;
-            base += index + strSubString.length();
-            strFullString = strFullString.substring(strFullString.indexOf(strSubString) + strSubString.length());
+        while ((index = strFullString.indexOf(strSubString, index)) != -1) {
+            res[count] += index;
+            index += strSubString.length();
             count++;
         }
-        return Arrays.copyOf(res, count -1);
+        return Arrays.copyOf(res, count);
     }
 
     public static int[] task5() {
@@ -237,59 +231,60 @@ public class HomeWork {
         System.out.println("Input substring: ");
         String sub = sc.nextLine();
 
-        return task5IndexArr(fullString,sub);
+        return task5IndexArr(fullString, sub);
     }
 
     public static int[] optionalTask1(int[] temp) {
         System.out.println("\nOptional task 1");
-        for(int i = 0; i < temp.length; i++) {
-            temp[i] = ((int)(Math.random()*101) - (int)(Math.random()*101));
-            System.out.println("День " + (i + 1) + " "  + temp[i] + " градусов");
-            i++;
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = ((int) (Math.random() * 101) - (int) (Math.random() * 101));
+            System.out.println("День " + (i + 1) + " " + temp[i] + " градусов");
         }
         return temp;
     }
 
-enum Weather {
-    FREEZY("Шуба","Валенки"),
-    COLD("Куртка", "Ботинки"),
-    WORM("Свитер","Туфли"),
-    HOT("Футболка", "Шлепанци");
-        Weather() {
-        }
-        private String clothesUp;
-        private String clothesDown;
-        Weather(String clothesUp, String clothesDown) {
-            this.clothesUp = clothesUp;
-            this.clothesDown = clothesDown;
-        }
-}
-
-    public String[] getClothing(String clothesUp, String clothesDown) {
-        return new String[]{clothesUp,clothesDown};
+    enum Weather {
+        FREEZY,
+        COLD,
+        WORM,
+        HOT
     }
 
-    public static String[] optionalTask2() {
-        System.out.println("\nOptional task 2");
-        Weather weather = Weather.COLD;
-        Weather weather1 = Weather.HOT;
-        Weather weather2 = Weather.WORM;
-        Weather weather3 = Weather.FREEZY;
-        int[] temp = new int[29];
-        for (int i = 0; i < temp.length; i++) {
-            temp[i] = ((int)(Math.random()*101) - (int)(Math.random()*101));
-            if (temp[i] > 0 && temp[i] <= 15) {
-                System.out.println("День "+ (i + 1) + " " + temp[i] +" " + weather.clothesUp + "," + weather.clothesDown);
-            } else if (temp[i] < 0){
-                System.out.println("День "+ (i + 1) + " " + temp[i] + " " + weather3.clothesUp + "," + weather3.clothesDown);
-            } else if (temp[i] > 15 && temp[i] <= 25) {
-                System.out.println("День "+ (i + 1) + " " + temp[i] + " " + weather2.clothesUp + "," + weather2.clothesDown);
-            } else {
-                System.out.println("День "+ (i + 1) + " " + temp[i] + " " + weather1.clothesUp + "," + weather1.clothesDown);
-            }
-
+    private static Weather getWeather(int temp) {
+        if (temp > 0 && temp <= 15) {
+            return Weather.COLD;
+        } else if (temp < 0) {
+            return Weather.FREEZY;
+        } else if (temp > 15 && temp <= 25) {
+            return Weather.WORM;
+        } else {
+            return Weather.HOT;
         }
+    }
 
+    private static String[] getClothing(Weather weather) {
+        switch (weather) {
+            case FREEZY:
+                return new String[]{"Шуба", "Валенки"};
+            case COLD:
+                return new String[]{"Куртка", "Ботинки"};
+            case WORM:
+                return new String[]{"Свитер", "Туфли"};
+            case HOT:
+                return new String[]{"Футболка", "Шлепанци"};
+            default:
+                throw new IllegalArgumentException("Unsupported weather");
+        }
+    }
+    public static String[] optionalTask2() {
+        int[] temp = new int[29];
+        optionalTask1(temp);
+        System.out.println("\nOptional task 2");
+        for (int i = 0; i < temp.length; i++) {
+            Weather weather = getWeather(temp[i]);
+            String[] clothing = getClothing(weather);
+            System.out.println("День " + (i + 1) + " " + temp[i] + "\u2103".toUpperCase() + " " + weather + " : " + clothing[0] + "," + clothing[1]);
+        }
         return Arrays.toString(temp).split(" ");
     }
 }
